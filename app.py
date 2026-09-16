@@ -7,8 +7,8 @@ import requests
 from flask import Flask, render_template
 
 # ── Innstillinger ───────────────────────────────────────────────
-TEACHER_URL = "http://127.0.0.1:5000/data"     # ← IP-adressen til lærer-Pi-en
-NAME = "Ola Nordmann"                          # ← Ditt eget navn
+TEACHER_URL = "http://10.2.0.58:5000/data"     # ← IP-adressen til lærer-Pi-en
+NAME = "Artem"                          # ← Ditt eget navn
 SEND_INTERVAL = 30                             # Antall sekunder mellom hver sending
 # ──────────────────────────────────────────────────────────────────────────────
 
