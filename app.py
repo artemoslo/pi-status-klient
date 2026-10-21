@@ -10,6 +10,9 @@ from flask import Flask, render_template
 TEACHER_URL = "http://10.2.0.58:5000/data"     # ← IP-adressen til lærer-Pi-en
 NAME = "Artem"                          # ← Ditt eget navn
 SEND_INTERVAL = 30                             # Antall sekunder mellom hver sending
+FORRIGE_URL = "http://10.2.0.XX:8080"   # ← Pi til forrige elev
+NESTE_URL = "http://10.2.0.YY:8080"     # ← Pi til neste elev
+KATALOG_URL = "http://10.2.0.58:5000"   # ← klassens katalog
 # ──────────────────────────────────────────────────────────────────────────────
 
 app = Flask(__name__)
@@ -42,7 +45,13 @@ def get_status():
 @app.route("/")
 def index():
     # Viser statussiden til eleven i nettleseren.
-    return render_template("status.html", s=get_status())
+    return render_template(
+        "status.html",
+        s=get_status(),
+        forrige=FORRIGE_URL,
+        neste=NESTE_URL,
+        katalog=KATALOG_URL,
+    )
 
 
 def send_loop():

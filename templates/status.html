@@ -16,10 +16,19 @@
     .high { background: #e37e7e; }
     .mid  { background: #e3c97e; }
     .note { color: #555; font-size: 0.8rem; margin-top: 1rem; }
+        nav   { display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    nav a { color: #7ec8e3; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
+  <nav>
+    <a href="{{ forrige }}">&larr; Forrige elev</a>
+    <a href="{{ katalog }}">Klassekatalog</a>
+    <a href="{{ neste }}">Neste elev &rarr;</a>
+  </nav>
+  
   <h1>🖥 {{ s.hostname }}</h1>
   <div class="owner">{{ s.name }}</div>
 
