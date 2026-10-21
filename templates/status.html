@@ -19,6 +19,9 @@
         nav   { display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-size: 0.9rem; }
     nav a { color: #7ec8e3; text-decoration: none; }
     nav a:hover { text-decoration: underline; }
+        .lenker { margin-top: 1.5rem; font-size: 0.9rem; }
+    .lenker a { color: #7ec8e3; text-decoration: none; }
+    .lenker a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -28,7 +31,7 @@
     <a href="{{ katalog }}">Klassekatalog</a>
     <a href="{{ neste }}">Neste elev &rarr;</a>
   </nav>
-  
+
   <h1>🖥 {{ s.hostname }}</h1>
   <div class="owner">{{ s.name }}</div>
 
@@ -70,6 +73,9 @@
     </tr>
   </table>
 
+  <p class="lenker">
+    <a href="/skjema">Mitt skjema</a> | <a href="/resultat">Se resultater</a>
+  </p>
   <p class="note">Oppdateres automatisk hvert 30. sekund.</p>
 
 </body>

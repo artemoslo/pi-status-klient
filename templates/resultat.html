@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resultater</title>
+  <style>
+    body  { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 16px; }
+    h1    { font-size: 1.3rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th    { text-align: left; background: #f0f0f0; padding: 8px 12px;
+            border-bottom: 2px solid #ccc; font-size: 0.85rem; color: #555; }
+    td    { padding: 8px 12px; border-bottom: 1px solid #eee; }
+    tr:last-child td { border-bottom: none; }
+    .tilbake { margin-top: 1.5rem; }
+    .tilbake a { color: #0066aa; }
+    .ingen { color: #888; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+  <h1>Resultater</h1>
+
+  {% if svar_liste %}
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Favorittsang</th>
+        <th>Timer søvn</th>
+        <th>Fritidsaktivitet</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for svar in svar_liste %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ svar.question1 }}</td>
+        <td>{{ svar.question2 }}</td>
+        <td>{{ svar.question3 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="ingen">Ingen svar ennå.</p>
+  {% endif %}
+
+  <p class="tilbake"><a href="/skjema">← Fyll ut skjemaet</a> | <a href="/">Til statussiden</a></p>
+
+</body>
+</html>

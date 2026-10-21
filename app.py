@@ -4,7 +4,7 @@ import socket
 
 import psutil
 import requests
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 # ── Innstillinger ───────────────────────────────────────────────
 TEACHER_URL = "http://10.2.0.58:5000/data"     # ← IP-adressen til lærer-Pi-en
@@ -16,7 +16,8 @@ KATALOG_URL = "http://10.2.0.58:5000"   # ← klassens katalog
 # ──────────────────────────────────────────────────────────────────────────────
 
 app = Flask(__name__)
-
+# Svar lagres her mens programmet kjører (tømmes ved omstart)
+svar_liste = []
 
 def get_status():
     """Henter systeminfo fra denne Pi-en og pakker det i en dict."""
@@ -53,6 +54,22 @@ def index():
         katalog=KATALOG_URL,
     )
 
+@app.route("/skjema", methods=["GET", "POST"])
+def skjema():
+    if request.method == "POST":
+        svar = {
+            "question1": request.form.get("question1"),
+            "question2": request.form.get("question2"),
+            "question3": request.form.get("question3"),
+        }
+        svar_liste.append(svar)
+        return render_template("resultat.html", svar_liste=svar_liste)
+
+    return render_template("skjema.html")
+
+@app.route("/resultat")
+def resultat():
+    return render_template("resultat.html", svar_liste=svar_liste)
 
 def send_loop():
     # Kjører hele tiden i bakgrunnen og sender status til lærer-serveren.
